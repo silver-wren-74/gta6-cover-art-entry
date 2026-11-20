@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-sun" aria-hidden="true"></span>
+    <div>
+      <h1>Neon Coast Studio</h1>
+      <p>Turn your photos into multi-panel cover art — offline, nothing uploads.</p>
+    </div>
+  </div>
+  <button id="exportBtn" class="export-main" type="button">Export PNG</button>
+</header>
+
+<main class="workspace">
+  <section class="stage" id="dropZone">
+    <canvas id="preview" width="1080" height="1080" aria-label="Cover preview"></canvas>
+    <p class="stage-hint" id="activePanelLabel">Drag the preview to frame the active panel · scroll to zoom</p>
+  </section>
+
+  <aside class="controls">
+    <div class="group">
+      <h2>1 · Photos</h2>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      <div class="row">
+        <button id="addPhotosBtn" type="button">Add photos…</button>
+        <button id="spreadPhoto" type="button">One photo, all panels</button>
+      </div>
+      <div class="row">
+        <button id="sampleBoulevard" type="button">Try: boulevard sample</button>
+        <button id="sampleNeon" type="button">Try: neon sample</button>
+      </div>
+      <p class="note">Or drop image files anywhere on this page. Photos stay on your machine.</p>
+      <div id="panelList" class="panel-list"></div>
+    </div>
+
+    <div class="group">
+      <h2>2 · Frame the active panel</h2>
+      <label>Pan left / right <input id="panX" type="range" min="-100" max="100" value="0"></label>
+      <label>Pan up / down <input id="panY" type="range" min="-100" max="100" value="0"></label>
+      <label>Zoom <input id="zoom" type="range" min="100" max="300" value="100"></label>
+      <button id="resetFrame" type="button">Reset framing</button>
+    </div>
+
+    <div class="group">
+      <h2>3 · Look</h2>
+      <label>Layout <select id="layoutSelect"></select></label>
+      <label>Colour grade <select id="gradeSelect"></select></label>
+      <label>Film grain <input id="grainRange" type="range" min="0" max="100" value="50"></label>
+      <label class="check"><input id="frameToggle" type="checkbox" checked> Poster frame</label>
+    </div>
+
+    <div class="group">
+      <h2>4 · Caption</h2>
+      <label>Headline <input id="titleInput" type="text" maxlength="28" value="Neon Coast"></label>
+      <label>Subtitle <input id="subtitleInput" type="text" maxlength="48" value="every sunset has a story"></label>
+      <label>Lettering <select id="titleStyleSelect"></select></label>
+    </div>
+
+    <div class="group">
+      <h2>5 · Export</h2>
+      <label>Preview size <select id="sizeSelect"></select></label>
+      <div class="row">
+        <button type="button" data-export-size="square">PNG 1080×1080</button>
+        <button type="button" data-export-size="portrait">PNG 1080×1350</button>
+      </div>
+      <div class="row">
+        <button type="button" data-export-size="wide">PNG 1920×1080</button>
+        <button type="button" data-export-size="story">PNG 1080×1920</button>
+      </div>
+      <p class="note">Exports render at full resolution in one click — no server, no watermark.</p>
+    </div>
+  </aside>
+</main>
+
+<footer class="foot">Original fan-made tool. Not affiliated with any game publisher; all lettering and artwork are drawn here, in your browser.</footer>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>
